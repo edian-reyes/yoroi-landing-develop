@@ -515,8 +515,8 @@ class App extends Component {
           </Left>
         </ContainerBottom>
         <Collaborators />
-        <Roadmap />
-        <Technologies />
+        {/* <Roadmap />
+        <Technologies /> */}
       </span>
     );
 
