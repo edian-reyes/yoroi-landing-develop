@@ -5,9 +5,19 @@ import styled from 'styled-components';
 
 import { Container, ContainerGrey, SectionTitle } from '../css';
 
+const DevBG = styled.div`
+  background-image: url("./../assets/Developer.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  padding: 300px;
+`
+
 class Collaborators extends Component {
   render() {
     const _Collaborators = ({ intl: { formatMessage } }) => (
+      <div>
+        <DevBG/>
       <ContainerGrey>
         <Container>
           <SectionTitle>{formatMessage({ id: 'home.collaborators.our-collaborators' })}</SectionTitle>
@@ -43,6 +53,7 @@ class Collaborators extends Component {
           </div>
         </Container>
       </ContainerGrey>
+      </div>
     );
 
     const Collaborators = inject('locale')(injectIntl(observer(_Collaborators)));
