@@ -126,25 +126,27 @@ const VTitleList = styled.div`
  * diffrent sizes.
  */
 const Background = styled.div`
-  position: relative;
-  width: 2691px;
-  height: ${p => (p.hasOffset ? '1062px' : '1035px')};
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
 
-  @media (min-width: 700px) {
-    height: ${p => (p.hasOffset ? '1062px' : '1035px')};
-    top:  ${p => (p.hasOffset ? '-1275px' : '-900px')}; ;
-    right: ${p => (p.hasOffset ? '640px' : '730px')}; 
-  }
-  @media (max-width: 700px) {
-    height: ${p => (p.hasOffset ? '1062px' : '1035px')};
-    top: -867px;
-    right: 23px;
-  }
+  // @media (min-width: 700px) {
+  //   height: ${p => (p.hasOffset ? '1062px' : '1035px')};
+  //   top:  ${p => (p.hasOffset ? '-1275px' : '-900px')}; ;
+  //   right: ${p => (p.hasOffset ? '640px' : '730px')}; 
+  // }
+  // @media (max-width: 700px) {
+  //   height: ${p => (p.hasOffset ? '1062px' : '1035px')};
+  //   top: -867px;
+  //   right: 23px;
+  // }
 
-  transform: skew(56deg, -31deg);
-  border-radius: 30px;
-  background-image: ${p => (p.hasOffset ? 'linear-gradient(82deg, #1a44b7, #4760ff 30%)' : 'linear-gradient(53.05deg, #1D45BA 0%, #1F47BC 6%, #2C51C7 55%, #3154CB 100%)')};
+  // transform: skew(56deg, -31deg);
+  // border-radius: 30px;
+  background-image: url("./../assets/start-page-bg.jpg");
   z-index: -3;
+  background-size: cover;
+  background-repeat: no-repeat;
 `;
 
 const BackgroundB = styled.div`
@@ -209,6 +211,7 @@ const HeaderText = styled.span`
 const Row = styled.div`
   display: flex;
   align-items: center;
+  padding-top: 20px;
 `
 
 const HContainer = styled.div`
@@ -283,6 +286,8 @@ class App extends Component {
     const offsetPaths = ['/about', '/faq', '/support', '/terms_and_conditions'];
     const hasOffset = offsetPaths.some(r => window.location.href.match(r));
     const _Header = ({ locale, intl: { formatMessage } }) => (
+      <div>
+      <Background hasOffset={hasOffset} />
       <HContainer>
         <HeaderAltSub>
           <VTitleList>
@@ -319,7 +324,7 @@ class App extends Component {
             </Selector>
           </VTitleList>
         </HeaderAltSub>
-        <Container>
+        {/* <Container> */}
           <HeaderAlt>
             <Logo  src="./assets/EMURGOTEST-logo.svg" alt="EMURGO" />
             <div style={{ flex: 1 }} />
@@ -328,11 +333,11 @@ class App extends Component {
             </a>
           </HeaderAlt>
           <Row>
-            <VTitleList>
-              <Link to="/">
-                <Logo style={{marginLeft: '-120px'}} src="./assets/EMURGOTEST-logo.svg" alt="EMURGO" />
+            <div style={{margin: "10px 0"}}>
+            <Link to="/">
+                <Logo src="./assets/EMURGOTEST-logo.svg" alt="EMURGO" />
               </Link>
-            </VTitleList>
+            </div>
           <HeaderText>
             {/* <VTitleList >
               <NavLink to="/" exact>{formatMessage({ id: 'header.home' })}</NavLink>
@@ -409,11 +414,11 @@ class App extends Component {
             </Plx>
           </HeaderText>
           </Row>
-        </Container>
-        <Background hasOffset={hasOffset} />
-        <BackgroundB hasOffset={hasOffset} />
-        <BackgroundC hasOffset={hasOffset} />
+        {/* </Container> */}
+        {/* <BackgroundB hasOffset={hasOffset} />
+        <BackgroundC hasOffset={hasOffset} /> */}
       </HContainer>
+      </div>
     );
 
     const Header = inject('locale')(injectIntl(observer(_Header)));
