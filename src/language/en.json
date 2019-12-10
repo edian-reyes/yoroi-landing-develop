@@ -1,6 +1,8 @@
 {
   "header.home": "Home",
   "header.about": "About",
+  "header.contact": "Contact",
+  "header.blog": "Blog",
   "header.faq": "FAQ",
   "header.support": "Support",
   "header.download": "Download",
