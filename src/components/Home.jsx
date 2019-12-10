@@ -9,7 +9,8 @@ import styled from 'styled-components';
 
 import { Container, ContainerGrey, Overflow, SectionTitle } from './../css';
 import Roadmap from './Roadmap';
-import Technologies from './Technologies';
+import Blog from './Blog';
+// import Technologies from './Technologies';
 import Collaborators from './Collaborators';
 
 const MainTitle = styled.div`
@@ -515,6 +516,7 @@ class App extends Component {
           </Left>
         </ContainerBottom>
         <Collaborators />
+        <Blog/>
         {/* <Roadmap />
         <Technologies /> */}
       </span>
