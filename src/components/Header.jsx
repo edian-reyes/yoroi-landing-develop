@@ -87,21 +87,16 @@ const NavFixed = styled.div`
 const Logo = styled.img`
   font-size: 1.5em;
   text-align: center;
-  max-width: 128px;
+  max-width: 200px;
   height: 35px;
  
 `;
 
 const VTitleList = styled.div`
-  flex: 1;
-  margin: 4px;
+  margin: 10px 20px;
   text-align: center;
-  text-transform: uppercase;
- 
   font-size: 15px;
-  height: 24px;
-  font-weight: 500;
-
+  font-weight: 400;
   a{
     text-decoration: none;
     display: inline-block;
@@ -206,8 +201,15 @@ const HeaderText = styled.span`
   display: flex;
   margin-top: 15px;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-end;
+  width: 100%;
 `;
+
+          
+const Row = styled.div`
+  display: flex;
+  align-items: center;
+`
 
 const HContainer = styled.div`
   margin: 0 auto;
@@ -218,22 +220,19 @@ const HContainer = styled.div`
 
 const Selector = styled.select`
   background: transparent;
-  border: 2px solid #FFFFFF;
+  border: none;
   border-radius: 8px;
-  box-shadow: 0 2px 48px 0 rgba(83,81,81,0.5);
   color: white;
+  margin-top: -3px;
   font-size: 15px;
   font-weight: 500;
-  line-height: 18px;
-  padding-left: 16px; 
-  height: 48px;
-  width: 182px;                
+  width: 70px;                
   cursor: pointer;
-  &:hover{    
-    background-color: rgba(255,255,255,0.15);
-    box-shadow: 0 2px 48px 0 rgba(83,81,81,0.5);
+  // &:hover{    
+  //   background-color: rgba(255,255,255,0.15);
+  //   box-shadow: 0 2px 48px 0 rgba(83,81,81,0.5);
     
-      }
+  //     }
 `;
 
 const HeaderAlt = styled.div`
@@ -279,7 +278,7 @@ class App extends Component {
 
   render() {
     // Do not show Download on the home page
-    const downloadVisibility = this.isThisHomePage() ? 'hidden' : 'visible';
+    const downloadVisibility = this.isThisHomePage() ? false : true;
 
     const offsetPaths = ['/about', '/faq', '/support', '/terms_and_conditions'];
     const hasOffset = offsetPaths.some(r => window.location.href.match(r));
@@ -297,13 +296,13 @@ class App extends Component {
             </Link>
           </VTitleList>
           <VTitleList>
-            <Link onClick={this.toggleMenu} to="/faq/1">
-              {formatMessage({ id: 'header.faq' })}
+            <Link onClick={this.toggleMenu} to="/blog">
+              {formatMessage({ id: 'header.blog' })}
             </Link>
           </VTitleList>
           <VTitleList>
-            <Link onClick={this.toggleMenu} to="/support">
-              {formatMessage({ id: 'header.support' })}
+            <Link onClick={this.toggleMenu} to="/contact">
+              {formatMessage({ id: 'header.contact' })}
             </Link>
           </VTitleList>
           <VTitleList>
@@ -311,7 +310,7 @@ class App extends Component {
               value={locale.value}
               onChange={event => (locale.value = event.target.value)}
             >
-              <option value="en">ENGLISH</option>
+              <option value="en">Eng</option>
               <option value="ja">日本語</option>
               {/* <option value="ko">한국어</option>
               <option value="zh-Hans">简体中文</option>
@@ -322,43 +321,42 @@ class App extends Component {
         </HeaderAltSub>
         <Container>
           <HeaderAlt>
-            <Logo  src="./assets/logo.png" alt="Yoroi is a Web Light Wallet for Cardano Secure Fast Simple" />
+            <Logo  src="./assets/EMURGOTEST-logo.svg" alt="EMURGO" />
             <div style={{ flex: 1 }} />
             <a style={{ color: 'white', fontSize: '30px' }} href="javascript:void(0);" className="icon" onClick={this.toggleMenu}>
               <i className="fa fa-bars" />
             </a>
           </HeaderAlt>
-          <HeaderText>
+          <Row>
             <VTitleList>
               <Link to="/">
-                <Logo style={{marginLeft: '-120px'}} src="./assets/logo.png" alt="Yoroi is a Web Light Wallet for Cardano Secure Fast Simple" />
+                <Logo style={{marginLeft: '-120px'}} src="./assets/EMURGOTEST-logo.svg" alt="EMURGO" />
               </Link>
             </VTitleList>
-            <div style={{ flex: 0.3 }} />
-            <VTitleList style={{ flex: 0.5, marginTop: '10px' }}>
+          <HeaderText>
+            {/* <VTitleList >
               <NavLink to="/" exact>{formatMessage({ id: 'header.home' })}</NavLink>
-            </VTitleList>
-            <VTitleList style={{ flex: 0.5, marginTop: '10px' }}>
+            </VTitleList> */}
+            <VTitleList >
               <NavLink to="/about">{formatMessage({ id: 'header.about' })}</NavLink>
             </VTitleList>
-            <VTitleList style={{ flex: 0.5, marginTop: '10px' }}>
-              <NavLink to="/faq/1">{formatMessage({ id: 'header.faq' })}</NavLink>
+            <VTitleList >
+              <NavLink to="/blog/">{formatMessage({ id: 'header.blog' })}</NavLink>
             </VTitleList>
-            <VTitleList style={{ flex: 0.5, marginTop: '10px'}}>
-              <NavLink to="/support">{formatMessage({ id: 'header.support' })}</NavLink>
+            <VTitleList >
+              <NavLink to="/contact">{formatMessage({ id: 'header.contact' })}</NavLink>
             </VTitleList>
-            <div style={{ flex: 0.3 }} />
-            <VTitleList style={{zIndex: '15', visibility: `${downloadVisibility}` }} >
-              <Download />
-            </VTitleList>
-            <div style={{ flex: 0.1 }} />
+            { downloadVisibility && 
+              <VTitleList style={{zIndex: '15' }} >
+                <Download />
+              </VTitleList>
+            }
             <VTitleList style={{zIndex: '15'}}>
               <Selector
-                style={{marginTop: '-12px'}}
                 value={locale.value}
                 onChange={event => (locale.value = event.target.value)}
               >
-                <option style={{color: '#4A5065'}} value="en">ENGLISH</option>
+                <option style={{color: '#4A5065'}} value="en">Eng</option>
                 <option style={{color: '#4A5065'}} value="ja">日本語</option>
                 {/* <option style={{color: '#4A5065'}} value="ko">한국어</option>
                 <option style={{color: '#4A5065'}} value="zh-Hans">简体中文</option>
@@ -370,7 +368,7 @@ class App extends Component {
               <Content>
                 <NavFixed onClick={scroll}>
                   <Link to="/">
-                    <Logo src="./assets/logo.png" alt="Yoroi is a Web Light Wallet for Cardano Secure Fast Simple" />
+                    <Logo src="./assets/EMURGOTEST-logo.svg" alt="EMURGO" />
                   </Link>
                 </NavFixed>
                 <div style={{ flex: 0.3, marginRight: '45px' }} />
@@ -387,9 +385,11 @@ class App extends Component {
                   <NavLink to="/support">{formatMessage({ id: 'header.support' })}</NavLink>
                 </NavFixed>
                 <div style={{ flex: 0.3 }} />
-                <NavFixed  style={{zIndex: '15', visibility: `${downloadVisibility}` }} >
-                  <Download />
-                </NavFixed>
+                {downloadVisibility && 
+                  <NavFixed  style={{zIndex: '15' }} >
+                    <Download />
+                  </NavFixed>
+                }
                 <div style={{ flex: 0.1 }} />
                 <NavFixed style={{marginRight: '35px', marginTop: '-5px'}}>
                   <Selector 
@@ -397,7 +397,7 @@ class App extends Component {
                     value={locale.value}
                     onChange={event => (locale.value = event.target.value)}
                   >
-                    <option style={{color: '#4A5065'}} value="en">ENGLISH</option>
+                    <option style={{color: '#4A5065'}} value="en">Eng</option>
                     <option style={{color: '#4A5065'}} value="ja">日本語</option>
                     {/* <option style={{color: '#4A5065'}} value="ko">한국어</option>
                     <option style={{color: '#4A5065'}} value="zh-Hans">简体中文</option>
@@ -408,6 +408,7 @@ class App extends Component {
               </Content>
             </Plx>
           </HeaderText>
+          </Row>
         </Container>
         <Background hasOffset={hasOffset} />
         <BackgroundB hasOffset={hasOffset} />
