@@ -27,7 +27,7 @@ const SubTitle = styled.div`
   font-family: Rubik;	
   font-size: 20px;	
   line-height: 24px;
-  margin-top: 10px;
+  margin-top: 25px;
   margin-bottom: 10px;
 `;
 
@@ -35,7 +35,7 @@ const SubSubTitle = styled.div`
   font-size: 20px;
   color: white;
   font-weight: 300;
-  margin-top: 6px;
+  margin-top: 25px;
   display: flex;
   align-items: center;
 `;
@@ -120,8 +120,8 @@ const MainButtons = styled.div`
   display: flex;
   @media (min-width: 700px) {
     flex-direction: row;
-    max-width: 410px;
-    margin-top: 60px;
+    max-width: 540px;
+    margin-top: 40px;
   }
   @media (max-width: 700px) {
     margin-top: 40px;
@@ -191,7 +191,7 @@ const DownloadBChromeTextB = styled.div`
   font-weight: 300;
 `;
 
-const WatchVideo = styled.div`
+const CTAButton = styled.div`
   @media (min-width: 700px) {
     flex: 1;
   }
@@ -204,10 +204,9 @@ const WatchVideo = styled.div`
   align-items: center;
   justify-content: center;
   height: 46px;
-  margin-right: 10px;
-  border-radius: 8px;
+  margin-right: 30px;
+  border-radius: 3px;
   width: 190px;
-  box-shadow: 0 2px 48px 0 #184dcf;
   padding-left: 8px;
   padding-right: 8px;
 
@@ -380,7 +379,7 @@ class App extends Component {
       <span>
         <ContainerBottom>
           <Video isOpen={this.state.video} channel="youtube" videoId="DHtEgLMslIQ" onClose={() => this.setState({ video: false })} />
-          <Overflow style={{marginTop: '94px', marginLeft: '-37px'}}>
+          <Overflow style={{marginTop: '200px', marginLeft: '-37px'}}>
             <MainText>
               <MainTitle>
                 <YoroiInfo>
@@ -394,7 +393,7 @@ class App extends Component {
                 By <EmurgoLogo src="./assets/emurgo_logo.png" alt="Emurgo - Creating a more connected and equitable world through Cardano blockchain" border="0" />
               </SubSubTitle>
               <MainButtons>
-                <Download style={{marginRight: '20px'}}>
+                {/* <Download style={{marginRight: '20px'}}>
                   <DropdownButton onClick={this.showDropdownMenu}>
                     <DownloadLabel>{formatMessage({id: 'header.download'})}</DownloadLabel>
                     <img
@@ -462,19 +461,22 @@ class App extends Component {
                       </DropdownContent>
                     </OutsideClickHandler>
                   }
-                </Download>
-                <WatchVideo onClick={this.openVideo} style={{marginTop: '-7px'}}>
+                </Download> */}
+                <CTAButton>
+                  <span>Learn More</span>
+                </CTAButton>
+                <CTAButton onClick={this.openVideo}>
                   <span>
                     <WatchVideoImage />
                   </span>
                   <div style={{ width: '140px'}}>
                     <WatchVideoText> {formatMessage({ id: 'home.title.watch-the-video' })} </WatchVideoText>
                   </div>
-                </WatchVideo>
+                </CTAButton>
               </MainButtons>
             </MainText>
           </Overflow>
-          <MainImage/>
+          {/* <MainImage/> */}
           <Left>
             <SquareText style={{marginLeft: '502px'}}>
               <SquareTextTitle >{formatMessage({ id: 'home.properties.secure' })}</SquareTextTitle>
