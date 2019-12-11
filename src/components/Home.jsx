@@ -8,8 +8,9 @@ import OutsideClickHandler from 'react-outside-click-handler';
 import styled from 'styled-components';
 
 import { Container, ContainerGrey, Overflow, SectionTitle } from './../css';
-import Roadmap from './Roadmap';
 import Blog from './Blog';
+import ContactUs from './ContactUs';
+// import Roadmap from './Roadmap';
 // import Technologies from './Technologies';
 import Collaborators from './Collaborators';
 
@@ -517,6 +518,7 @@ class App extends Component {
         </ContainerBottom>
         <Collaborators />
         <Blog/>
+        <ContactUs/>
         {/* <Roadmap />
         <Technologies /> */}
       </span>
