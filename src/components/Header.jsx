@@ -37,8 +37,7 @@ const data = [
 
 const navFixed = {
   width: '100%',
-  height: 60,
-  backgroundImage: "linear-gradient(82deg,#1a44b7,#4760ff 30%)",
+  backgroundColor: "rgba(0,0,0, 0.7)",
   color: "#fff",
   left: 0,
   top: 0,
@@ -49,8 +48,8 @@ const navFixed = {
 
 const Content = styled.div`  
   display: flex;
-  max-width: 1115px;
-  margin: 10px auto;
+  margin: 10px 0 10px auto;
+  align-items: center;
   a{
     padding-top: 5px;
     
@@ -58,22 +57,14 @@ const Content = styled.div`
 `;
 
 const NavFixed = styled.div`
-  flex: 1;
   text-align: center;
-  text-transform: uppercase;
-  line-height: 21px;
   font-size: 15px;
-  height: 24px;
   font-weight: 500;
-  margin: 5px;
+  margin: 10px 20px;
   a{    
     display: inline-block;
     text-decoration: none;
-    height: 23px;
-    img{
-      margin-top: -5px;
-      margin-left: -65px
-    }
+    
     &.active{
       border-bottom: 2px solid white;
     }
@@ -226,10 +217,8 @@ const Selector = styled.select`
   border: none;
   border-radius: 8px;
   color: white;
-  margin-top: -3px;
   font-size: 15px;
   font-weight: 500;
-  width: 70px;                
   cursor: pointer;
   // &:hover{    
   //   background-color: rgba(255,255,255,0.15);
@@ -370,35 +359,29 @@ class App extends Component {
               </Selector>
             </VTitleList>
             <Plx parallaxData={data} style={navFixed} >
-              <Content>
+              <Row style={{maxWidth: "1115px", margin: "auto"}}>
                 <NavFixed onClick={scroll}>
                   <Link to="/">
                     <Logo src="./assets/EMURGOTEST-logo.svg" alt="EMURGO" />
                   </Link>
                 </NavFixed>
-                <div style={{ flex: 0.3, marginRight: '45px' }} />
-                <NavFixed style={{ flex: 0.5 }} onClick={scroll}>
-                  <NavLink to="/" exact>{formatMessage({ id: 'header.home' })}</NavLink>
-                </NavFixed>
-                <NavFixed style={{ flex: 0.5 }} onClick={scroll}>
+              <Content>
+                <NavFixed onClick={scroll}>
                   <NavLink to="/about">{formatMessage({ id: 'header.about' })}</NavLink>
                 </NavFixed>
-                <NavFixed style={{ flex: 0.5 }} onClick={scroll}>
-                  <NavLink to="/faq/1">{formatMessage({ id: 'header.faq' })}</NavLink>
+                <NavFixed onClick={scroll}>
+                  <NavLink to="/blog">{formatMessage({ id: 'header.blog' })}</NavLink>
                 </NavFixed>
-                <NavFixed style={{ flex: 0.5 }} onClick={scroll}>
-                  <NavLink to="/support">{formatMessage({ id: 'header.support' })}</NavLink>
+                <NavFixed onClick={scroll}>
+                  <NavLink to="/contact">{formatMessage({ id: 'header.contact' })}</NavLink>
                 </NavFixed>
-                <div style={{ flex: 0.3 }} />
                 {downloadVisibility && 
                   <NavFixed  style={{zIndex: '15' }} >
                     <Download />
                   </NavFixed>
                 }
-                <div style={{ flex: 0.1 }} />
-                <NavFixed style={{marginRight: '35px', marginTop: '-5px'}}>
+                <NavFixed style={{marginTop: "15px"}}>
                   <Selector 
-                    style={{marginRight: '7px'}}
                     value={locale.value}
                     onChange={event => (locale.value = event.target.value)}
                   >
@@ -411,6 +394,7 @@ class App extends Component {
                   </Selector>
                 </NavFixed>
               </Content>
+                </Row>
             </Plx>
           </HeaderText>
           </Row>
