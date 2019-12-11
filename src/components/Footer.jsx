@@ -8,14 +8,14 @@ import OutsideClickHandler from 'react-outside-click-handler';
 
 const ContainerFooter = styled.div`
   color: white;
-  background: linear-gradient(41deg, #1A44B7 0%, #4760FF 100%);
-  height: 187px;
-`;
+  background: linear-gradient(90deg, #215F68 20%, #48A1B0 80%);
+  padding: 60px 0;
+  `;
 
 const RowContainerIcons = styled.div`
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-end;
   
   .links {
     flex: 0;
@@ -30,9 +30,7 @@ const FooterText = styled.div`
   text-align: left; 
   display: flex; 
   flex-direction: row;
-  align-items: flex-end; 
-  margin-left:-45px;
-  margin-top:-24px;
+  margin-top: 50px;
 `;
 const Spacer = styled.div`
   @media (max-width: 700px) {
@@ -161,20 +159,15 @@ const LogoSize = styled.div`
 const Logo = styled.img`
   font-size: 1.5em;
   text-align: center;
-  max-width: 128px;
-  margin-right: -110px;
-  margin-left: -30px;
+  max-width: 200px;
 `;
 
 const LinkS = styled.div`
   flex: 0.8;
-  text-transform: uppercase;
   font-weight: 500;
-  font-size: 15px;
-  margin: 4px;
+  font-size: 14px;
+  margin: 0 0 0 40px;
   text-align: left;
-  text-transform: uppercase;
-  margin-top: -22px;
  
   @media (max-width: 700px) {
   }
@@ -191,6 +184,30 @@ const ContainerHeight = styled(Container)`
     height: 187px;
   }
 `;
+
+const Selector = styled.select`
+  background: transparent;
+  border: none;
+  color: white;
+  font-weight: 500;
+  font-size: 15px;
+  cursor: pointer;
+  text-align: left;
+  font-family: "Rubik";
+`;
+
+const SelectorOption = styled.option`
+  background-color: transparent;
+`
+
+const FooterWrapper = styled.div`
+  max-width: 1200px; 
+  margin: 0 auto;
+
+  @media (max-width: 1200px) {
+    max-width: 940px; 
+  }
+`
 
 class App extends Component {
   constructor(props) {
@@ -219,31 +236,62 @@ class App extends Component {
   };
 
   render() {
-    const _Footer = ({ intl: { formatMessage } }) => (
-      <ContainerFooter >
-        <ContainerHeight>
+    const _Footer = ({ locale, intl: { formatMessage } }) => (
+      <ContainerFooter>
+        <FooterWrapper>
           <RowContainer>
             <LogoSize>
-              <Logo src="./assets/logo.png" alt="Yoroi is a Web Light Wallet for Cardano Secure Fast Simple" />
+              <div>
+              <Logo src="./../assets/EMURGOTEST-logo.svg" alt="Yoroi is a Web Light Wallet for Cardano Secure Fast Simple" />
+              </div>
+            <FooterText>
+              {formatMessage({ id: 'footer.all-rights' })}
+            </FooterText>
             </LogoSize>
-            <LinkS onClick={scroll}>
-              <Link to="/">{formatMessage({ id: 'header.home' })}</Link>
-            </LinkS>
-            <LinkS onClick={scroll}>
-              <Link to="/about">{formatMessage({ id: 'header.about' })}</Link>
-            </LinkS>
-            <LinkS onClick={scroll} style={{flex: 0.5}}>
-              <Link to="/faq/1">{formatMessage({ id: 'header.faq' })}</Link>
-            </LinkS>
-            <LinkS onClick={scroll}>
-              <Link to="/support">{formatMessage({ id: 'header.support' })}</Link>
-            </LinkS>
-            <LinkS onClick={scroll} style={{ flex: 1.7 }}>
-              <Link to="/terms_and_conditions">{formatMessage({ id: 'footer.terms-and-condtions' })}</Link>
-            </LinkS>
-            <div style={{ flex: 0.1 }} />
-            <LinkS style={{display: 'flex', flexDirection: 'column', alignItems: 'flex-end'}}>
-              <Download>
+            <div>
+            <RowContainer>
+              <LinkS onClick={scroll}>
+                <Link to="/about">{formatMessage({ id: 'header.about' })}</Link>
+              </LinkS>
+              <LinkS onClick={scroll}>
+                <Link to="/blog">{formatMessage({ id: 'header.blog' })}</Link>
+              </LinkS>
+              <LinkS onClick={scroll} style={{flex: 0.5}}>
+                <Link to="/contact">{formatMessage({ id: 'header.contact' })}</Link>
+              </LinkS>
+              <LinkS>
+                <Selector
+                  value={locale.value}
+                  onChange={event => (locale.value = event.target.value)}
+                >
+                  <SelectorOption value="en">Eng</SelectorOption>
+                  <SelectorOption value="ja">日本語</SelectorOption>
+                </Selector>
+              </LinkS>
+            </RowContainer>
+            <RowContainerIcons style={{ paddingTop: '29.74px', }}>
+              <a className='links links-flex' target= '_blank' href="https://www.facebook.com/Yoroi-wallet-399386000586822/" rel='noopener'>
+                <img src="./assets/facebook.svg" />
+              </a>
+              <a className='links' target= '_blank' href="https://twitter.com/YoroiWallet" rel='noopener'>
+                <img src="./assets/twitter.svg" />
+              </a>
+              <a className='links' target= '_blank' href="https://www.youtube.com/channel/UCgFQ0hHuPO1QDcyP6t9KZTQ" rel='noopener'>
+                <img src="./assets/youtube.svg" />
+              </a>
+              <a className='links' target= '_blank' href="https://medium.com/@emurgo_io" rel='noopener'>
+                <img src="./assets/medium-size.svg" />
+              </a>
+              <a className='links' target= '_blank' href="https://www.reddit.com/r/cardano/" rel='noopener'>
+                <img src="./assets/reddit.svg" />
+              </a>
+              <a className='links' target= '_blank' href="https://www.linkedin.com/company/emurgo_io"  rel='noopener'>
+                <img src="./assets/linkedin.svg" />
+              </a>
+            </RowContainerIcons>
+            </div>
+            {/* <LinkS style={{display: 'flex', flexDirection: 'column', alignItems: 'flex-end'}}> */}
+              {/* <Download>
                 <DropdownButton onClick={this.showDropdownMenu}>
                   <DownloadButtonText>{formatMessage({id: 'header.download'})}</DownloadButtonText>
                   <img
@@ -311,37 +359,11 @@ class App extends Component {
                   </DropdownContent>
                   </OutsideClickHandler>
                 }
-              </Download>
-              <Spacer />
-              <RowContainerIcons style={{ paddingTop: '29.74px', }}>
-                <a className='links links-flex' target= '_blank' href="https://www.facebook.com/Yoroi-wallet-399386000586822/" rel='noopener'>
-                  <img src="./assets/facebook.svg" />
-                </a>
-                <a className='links' target= '_blank' href="https://twitter.com/YoroiWallet" rel='noopener'>
-                  <img src="./assets/twitter.svg" />
-                </a>
-                <a className='links' target= '_blank' href="https://www.youtube.com/channel/UCgFQ0hHuPO1QDcyP6t9KZTQ" rel='noopener'>
-                  <img src="./assets/youtube.svg" />
-                </a>
-                <a className='links' target= '_blank' href="https://medium.com/@emurgo_io" rel='noopener'>
-                  <img src="./assets/medium-size.svg" />
-                </a>
-                <a className='links' target= '_blank' href="https://www.reddit.com/r/cardano/" rel='noopener'>
-                  <img src="./assets/reddit.svg" />
-                </a>
-                <a className='links' target= '_blank' href="https://www.linkedin.com/company/emurgo_io"  rel='noopener'>
-                  <img src="./assets/linkedin.svg" />
-                </a>
-              </RowContainerIcons>
-            </LinkS>
+              </Download> */}
+              {/* <Spacer /> */}
+            {/* </LinkS> */}
           </RowContainer>
-          <RowContainerIcons style={{paddingTop: '-29.74px' }}>
-            <FooterText>
-              {formatMessage({ id: 'footer.all-rights' })}
-            </FooterText>
-            <Spacer/>
-          </RowContainerIcons>
-        </ContainerHeight>
+          </FooterWrapper>
       </ContainerFooter>
     );
 
