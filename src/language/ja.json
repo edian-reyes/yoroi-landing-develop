@@ -1,6 +1,8 @@
 {
   "header.home": "ホーム",
   "header.about": "概要",
+  "header.contact": "Contact",
+  "header.blog": "Blog",
   "header.faq": "よくある質問",
   "header.support": "サポート",
   "header.download": "ダウンロード",
