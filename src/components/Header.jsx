@@ -12,12 +12,12 @@ import Download from './Download';
 const data = [
   {
     start: 0,
-    end: 400,
+    end: 300,
     properties: [
       {
-        startValue: 0,
-        endValue: 0,
-        property: "opacity"
+        startValue: "rgba(0,0,0, 0)",
+        endValue: "rgba(0,0,0, 0)",
+        property: "backgroundColor"
       }
     ]
   },
@@ -26,9 +26,9 @@ const data = [
     duration: 100,
     properties: [
       {
-        startValue: 0,
-        endValue: 1,
-        property: "opacity"
+        startValue: "rgba(0,0,0, 0)",
+        endValue: "rgba(0,0,0, 0.8)",
+        property: "backgroundColor"
       }
     ]
   },
@@ -37,7 +37,6 @@ const data = [
 
 const navFixed = {
   width: '100%',
-  backgroundColor: "rgba(0,0,0, 0.7)",
   color: "#fff",
   left: 0,
   top: 0,
@@ -254,6 +253,12 @@ const HeaderAltSub = styled.div`
   z-index: 100;
 `;
 
+const FixedHeader = styled.div`
+  position: fixed;
+  top: 0;
+  width: 100%;
+`
+
 
 class App extends Component {
   constructor(props) {
@@ -275,8 +280,6 @@ class App extends Component {
     const offsetPaths = ['/about', '/faq', '/support', '/terms_and_conditions'];
     const hasOffset = offsetPaths.some(r => window.location.href.match(r));
     const _Header = ({ locale, intl: { formatMessage } }) => (
-      <div>
-      <Background hasOffset={hasOffset} />
       <HContainer>
         <HeaderAltSub>
           <VTitleList>
@@ -285,17 +288,17 @@ class App extends Component {
             </Link>
           </VTitleList>
           <VTitleList>
-            <Link onClick={this.toggleMenu} to="/about">
+            <Link onClick={this.toggleMenu} to="/">
               {formatMessage({ id: 'header.about' })}
             </Link>
           </VTitleList>
           <VTitleList>
-            <Link onClick={this.toggleMenu} to="/blog">
+            <Link onClick={this.toggleMenu} to="/">
               {formatMessage({ id: 'header.blog' })}
             </Link>
           </VTitleList>
           <VTitleList>
-            <Link onClick={this.toggleMenu} to="/contact">
+            <Link onClick={this.toggleMenu} to="/">
               {formatMessage({ id: 'header.contact' })}
             </Link>
           </VTitleList>
@@ -313,7 +316,6 @@ class App extends Component {
             </Selector>
           </VTitleList>
         </HeaderAltSub>
-        {/* <Container> */}
           <HeaderAlt>
             <Logo  src="./assets/EMURGOTEST-logo.svg" alt="EMURGO" />
             <div style={{ flex: 1 }} />
@@ -321,43 +323,7 @@ class App extends Component {
               <i className="fa fa-bars" />
             </a>
           </HeaderAlt>
-          <Row>
-            <div style={{margin: "10px 0"}}>
-            <Link to="/">
-                <Logo src="./assets/EMURGOTEST-logo.svg" alt="EMURGO" />
-              </Link>
-            </div>
           <HeaderText>
-            {/* <VTitleList >
-              <NavLink to="/" exact>{formatMessage({ id: 'header.home' })}</NavLink>
-            </VTitleList> */}
-            <VTitleList >
-              <NavLink to="/about">{formatMessage({ id: 'header.about' })}</NavLink>
-            </VTitleList>
-            <VTitleList >
-              <NavLink to="/blog/">{formatMessage({ id: 'header.blog' })}</NavLink>
-            </VTitleList>
-            <VTitleList >
-              <NavLink to="/contact">{formatMessage({ id: 'header.contact' })}</NavLink>
-            </VTitleList>
-            { downloadVisibility && 
-              <VTitleList style={{zIndex: '15' }} >
-                <Download />
-              </VTitleList>
-            }
-            <VTitleList style={{zIndex: '15'}}>
-              <Selector
-                value={locale.value}
-                onChange={event => (locale.value = event.target.value)}
-              >
-                <option style={{color: '#4A5065'}} value="en">Eng</option>
-                <option style={{color: '#4A5065'}} value="ja">日本語</option>
-                {/* <option style={{color: '#4A5065'}} value="ko">한국어</option>
-                <option style={{color: '#4A5065'}} value="zh-Hans">简体中文</option>
-                <option style={{color: '#4A5065'}} value="zh-Hant">繁體中文</option>
-                <option style={{color: '#4A5065'}} value="ru">Pусский</option> */}
-              </Selector>
-            </VTitleList>
             <Plx parallaxData={data} style={navFixed} >
               <Row style={{maxWidth: "1115px", margin: "auto"}}>
                 <NavFixed onClick={scroll}>
@@ -365,44 +331,39 @@ class App extends Component {
                     <Logo src="./assets/EMURGOTEST-logo.svg" alt="EMURGO" />
                   </Link>
                 </NavFixed>
-              <Content>
-                <NavFixed onClick={scroll}>
-                  <NavLink to="/about">{formatMessage({ id: 'header.about' })}</NavLink>
-                </NavFixed>
-                <NavFixed onClick={scroll}>
-                  <NavLink to="/blog">{formatMessage({ id: 'header.blog' })}</NavLink>
-                </NavFixed>
-                <NavFixed onClick={scroll}>
-                  <NavLink to="/contact">{formatMessage({ id: 'header.contact' })}</NavLink>
-                </NavFixed>
-                {downloadVisibility && 
-                  <NavFixed  style={{zIndex: '15' }} >
-                    <Download />
-                  </NavFixed>
-                }
-                <NavFixed style={{marginTop: "15px"}}>
-                  <Selector 
-                    value={locale.value}
-                    onChange={event => (locale.value = event.target.value)}
-                  >
-                    <option style={{color: '#4A5065'}} value="en">Eng</option>
-                    <option style={{color: '#4A5065'}} value="ja">日本語</option>
-                    {/* <option style={{color: '#4A5065'}} value="ko">한국어</option>
-                    <option style={{color: '#4A5065'}} value="zh-Hans">简体中文</option>
-                    <option style={{color: '#4A5065'}} value="zh-Hant">繁體中文</option>
-                    <option style={{color: '#4A5065'}} value="ru">Pусский</option>  */}
-                  </Selector>
-                </NavFixed>
-              </Content>
+                  <Content>
+                    <NavFixed onClick={scroll}>
+                      <NavLink to="/about">{formatMessage({ id: 'header.about' })}</NavLink>
+                    </NavFixed>
+                    <NavFixed onClick={scroll}>
+                      <NavLink to="/blog">{formatMessage({ id: 'header.blog' })}</NavLink>
+                    </NavFixed>
+                    <NavFixed onClick={scroll}>
+                      <NavLink to="/contact">{formatMessage({ id: 'header.contact' })}</NavLink>
+                    </NavFixed>
+                    {downloadVisibility && 
+                      <NavFixed  style={{zIndex: '15' }} >
+                        <Download />
+                      </NavFixed>
+                    }
+                    <NavFixed style={{marginTop: "15px"}}>
+                      <Selector 
+                        value={locale.value}
+                        onChange={event => (locale.value = event.target.value)}
+                      >
+                        <option style={{color: '#4A5065'}} value="en">Eng</option>
+                        <option style={{color: '#4A5065'}} value="ja">日本語</option>
+                        {/* <option style={{color: '#4A5065'}} value="ko">한국어</option>
+                        <option style={{color: '#4A5065'}} value="zh-Hans">简体中文</option>
+                        <option style={{color: '#4A5065'}} value="zh-Hant">繁體中文</option>
+                        <option style={{color: '#4A5065'}} value="ru">Pусский</option>  */}
+                      </Selector>
+                    </NavFixed>
+                  </Content>
                 </Row>
             </Plx>
           </HeaderText>
-          </Row>
-        {/* </Container> */}
-        {/* <BackgroundB hasOffset={hasOffset} />
-        <BackgroundC hasOffset={hasOffset} /> */}
       </HContainer>
-      </div>
     );
 
     const Header = inject('locale')(injectIntl(observer(_Header)));
