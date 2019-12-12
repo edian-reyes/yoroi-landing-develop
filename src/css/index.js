@@ -1,17 +1,5 @@
 import styled from 'styled-components';
 
-const Overflow = styled.div `
-  @media (max-width: 700px) {
-    margin-top: 46px;
-  }
-  
-  @media (min-width: 700px) {
-    margin-top: 86px;
-  }
-  height:450px;
-  display: flex;
-`;
-
 const OverflowS = styled.div `
   @media (max-width: 700px) {
     margin-top: 43px;

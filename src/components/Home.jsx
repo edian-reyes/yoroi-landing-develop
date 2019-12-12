@@ -7,7 +7,7 @@ import { FormattedHTMLMessage } from 'react-intl';
 import OutsideClickHandler from 'react-outside-click-handler';
 import styled from 'styled-components';
 
-import { Container, ContainerGrey, Overflow, SectionTitle } from './../css';
+import { Container, ContainerGrey, SectionTitle } from './../css';
 import Blog from './Blog';
 import ContactUs from './ContactUs';
 // import Roadmap from './Roadmap';
