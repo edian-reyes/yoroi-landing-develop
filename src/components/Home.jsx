@@ -75,7 +75,7 @@ const Right = styled.div`
 
 const Left = styled.div`
   @media (min-width: 700px) {
-    margin: 130px 50% 0 0;
+    margin: 130px 50% 130px 0;
   }
   @media (max-width: 700px) {
     margin: 0 8px 0 8px;
@@ -261,8 +261,7 @@ const EmurgoLogo = styled.img`
 `;
 
 const ContainerBottom = styled(Container)`
-  padding-bottom: 60px;
-  max-height: 2400px;
+  padding-top: 260px;
 `;
 
 const DropdownButton = styled.div`
@@ -339,6 +338,25 @@ const DownloadLabel = styled.div`
   text-transform: uppercase;
 `;
 
+const BackgroundContainer = styled.div`
+  height: 100vh;
+  top: 0;
+  background-image: url("./../assets/start-page-bg.jpg");
+  z-index: -3;
+  background-size: cover;
+  background-repeat: no-repeat;
+  padding-bottom: 200px;
+
+  @media (max-width: 1024px) {
+    height: auto;
+  }
+`;
+
+const WhatWeOffer = styled.div`
+  max-width: 1200px;
+  margin: auto;
+`
+
 /**
  *  This Component is to be able to pass isOpen
  *  to ModalVideo. Example did not work as intenteded:
@@ -378,10 +396,10 @@ class App extends Component {
 
   render() {
     const _Home = ({ intl: { formatMessage } }) => (
-      <span>
+      <div>
+        <BackgroundContainer>
         <ContainerBottom>
           <Video isOpen={this.state.video} channel="youtube" videoId="DHtEgLMslIQ" onClose={() => this.setState({ video: false })} />
-          <Overflow style={{marginTop: '200px', marginLeft: '-37px'}}>
             <MainText>
               <MainTitle>
                 <YoroiInfo>
@@ -477,8 +495,10 @@ class App extends Component {
                 </CTAButton>
               </MainButtons>
             </MainText>
-          </Overflow>
           {/* <MainImage/> */}
+        </ContainerBottom>
+        </BackgroundContainer>
+        <WhatWeOffer>
           <Left>
             <SquareText style={{marginLeft: '502px'}}>
               <SquareTextTitle >{formatMessage({ id: 'home.properties.secure' })}</SquareTextTitle>
@@ -515,13 +535,13 @@ class App extends Component {
               <SquareImage src="./assets/icon_simple.svg" alt="Yoroi - Simple Our passion" />
             </square>
           </Left>
-        </ContainerBottom>
+        </WhatWeOffer>
         <Collaborators />
         <Blog/>
         <ContactUs/>
         {/* <Roadmap />
         <Technologies /> */}
-      </span>
+        </div>
     );
 
     const Home = inject('locale')(injectIntl(observer(_Home)));
