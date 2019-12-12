@@ -197,7 +197,7 @@ const Selector = styled.select`
 `;
 
 const SelectorOption = styled.option`
-  background-color: transparent;
+  color: #4A5065;
 `
 
 const FooterWrapper = styled.div`
@@ -251,13 +251,13 @@ class App extends Component {
             <div>
             <RowContainer>
               <LinkS onClick={scroll}>
-                <Link to="/about">{formatMessage({ id: 'header.about' })}</Link>
+                <Link to="/">{formatMessage({ id: 'header.about' })}</Link>
               </LinkS>
               <LinkS onClick={scroll}>
-                <Link to="/blog">{formatMessage({ id: 'header.blog' })}</Link>
+                <Link to="/">{formatMessage({ id: 'header.blog' })}</Link>
               </LinkS>
               <LinkS onClick={scroll} style={{flex: 0.5}}>
-                <Link to="/contact">{formatMessage({ id: 'header.contact' })}</Link>
+                <Link to="/">{formatMessage({ id: 'header.contact' })}</Link>
               </LinkS>
               <LinkS>
                 <Selector
