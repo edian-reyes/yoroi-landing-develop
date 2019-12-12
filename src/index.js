@@ -4,6 +4,7 @@ import { Provider, inject, observer } from "mobx-react";
 import { HashRouter as Router, BrowserRouter, Route, Link, Redirect, Switch, withRouter } from "react-router-dom";
 import { MobxIntlProvider, LocaleStore } from "mobx-react-intl";
 import { addLocaleData } from "react-intl";
+import "sweetalert/dist/sweetalert.css"
 
 import enLocale from 'react-intl/locale-data/en';
 import jaLocale from 'react-intl/locale-data/ja';
