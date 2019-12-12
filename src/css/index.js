@@ -57,7 +57,6 @@ export {
   ContainerB,
   ContainerGrey,
   ContainerBlue,
-  Overflow,
   OverflowS,
   SectionTitle,
   SectionTitleLight,
