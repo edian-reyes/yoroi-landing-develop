@@ -1,3 +1,7 @@
-iframe#launcher { 
+iframe#launcher {
   display: none;
+}
+
+.modal-video-body {
+  max-width: 840px;
 }
