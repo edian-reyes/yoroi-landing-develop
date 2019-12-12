@@ -280,6 +280,7 @@ class App extends Component {
     const offsetPaths = ['/about', '/faq', '/support', '/terms_and_conditions'];
     const hasOffset = offsetPaths.some(r => window.location.href.match(r));
     const _Header = ({ locale, intl: { formatMessage } }) => (
+      <FixedHeader>
       <HContainer>
         <HeaderAltSub>
           <VTitleList>
@@ -364,6 +365,7 @@ class App extends Component {
             </Plx>
           </HeaderText>
       </HContainer>
+      </FixedHeader>
     );
 
     const Header = inject('locale')(injectIntl(observer(_Header)));
