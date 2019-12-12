@@ -2,6 +2,7 @@ import React, {Component} from "react"
 import styled from 'styled-components';
 import { injectIntl } from 'react-intl';
 import { inject, observer } from 'mobx-react/index';
+import SweetAlert from "sweetalert-react"
 
 const Title = styled.h2`
   color: #215F68;
@@ -82,26 +83,69 @@ const TextArea = styled.textarea`
   font-family: "Rubik";
 `
 
+const FormDetails = (props) => {
+    return (
+      <div>
+        <h3>E-Mail: {props.email}</h3>
+        <h3>Message: {props.message}</h3>
+      </div>
+    )
+}
+
 class ContactUs extends Component {
   constructor() {
     super()
+
+    this.state = {
+      name: "",
+      email: "",
+      message: "",
+      show: false
+    }
+  }
+
+  onSubmitForm = (e) => {
+    e.preventDefault();
+    const {name, email, message} = this.state
+    console.log(!name && !email && !message);
+    
+    if(!name || !email || !message) return;
+
+    this.setState({
+      show: true
+    })
+  }
+
+  onChangeInput = (e) => {
+    console.log({[e.target.name]: e.target.value})
+    this.setState({
+      [e.target.name]: e.target.value
+    })
   }
 
   render() {
+    const {name, email, message} = this.state
     return (
       <section id="contact-us" style={{marginTop: "30px"}}>
+        <SweetAlert
+        show={this.state.show}
+        title={`Hi ${name}, your message was sent succesfully!`}
+        text={`E-Mail: ${email} Message: ${message}`}
+        type="success"
+        onConfirm={() => this.setState({ show: false, name: "", email: "", message: "" })}
+      />
         <Title style={{textAlign: "center"}}>Contact Us</Title>
         <MainContainer>
           <ContactItem style={{padding: "20px 0", backgroundColor: "#F1F7FA"}}>
             <FormContainer>
-              <form>
+              <form method="POST" onSubmit={this.onSubmitForm}>
                 <TitleDescription>
                   Ask us anything! We'll get back to you within 24 - 48 hours
                 </TitleDescription>
-                <Input type="text" name="name" placeholder="Name"/>
-                <Input type="text" name="email" placeholder="E-mail"/>
+                <Input type="text" name="name" value={name} placeholder="Name" onChange={this.onChangeInput}/>
+                <Input type="text" name="email" value={email} placeholder="E-mail" onChange={this.onChangeInput}/>
                 <TitleDescription>How can we help you?</TitleDescription>
-                <TextArea rows="8" name="message" placeholder="Your message"/>
+                <TextArea rows="8" name="message" value={message} placeholder="Your message" onChange={this.onChangeInput}/>
                 <SubmitButton>Learn More</SubmitButton>
               </form>
             </FormContainer>
